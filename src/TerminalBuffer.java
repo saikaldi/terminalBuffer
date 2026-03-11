@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.List;
 public class TerminalBuffer {
     private int width;
     private int height;
@@ -5,11 +7,17 @@ public class TerminalBuffer {
     private int cursorRow;
     private int cursorCol;
 
+
+
+    private List<Cell[]> scrollback;       // stores lines that scrolled off the screen
+    private int maxScrollback = 100;       // maximum number of lines to keep
+
     public TerminalBuffer(int width, int height) {
         this.width = width;
         this.height = height;
         this.cursorRow = 0;
         this.cursorCol = 0;
+        scrollback = new LinkedList<>();
 
         // create an empty screen
         screen = new Cell[height][width];
