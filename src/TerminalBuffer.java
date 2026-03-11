@@ -149,4 +149,23 @@ public class TerminalBuffer {
 
         return sb.toString();
     }
+    // Move cursor up by n rows (do not go above 0)
+    public void moveCursorUp(int n) {
+        cursorRow = Math.max(0, cursorRow - n);
+    }
+
+    // Move cursor down by n rows (do not go below height-1)
+    public void moveCursorDown(int n) {
+        cursorRow = Math.min(height - 1, cursorRow + n);
+    }
+
+    // Move cursor left by n columns (do not go below 0)
+    public void moveCursorLeft(int n) {
+        cursorCol = Math.max(0, cursorCol - n);
+    }
+
+    // Move cursor right by n columns (do not go beyond width-1)
+    public void moveCursorRight(int n) {
+        cursorCol = Math.min(width - 1, cursorCol + n);
+    }
 }
