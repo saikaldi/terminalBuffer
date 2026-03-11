@@ -168,4 +168,30 @@ public class TerminalBuffer {
     public void moveCursorRight(int n) {
         cursorCol = Math.min(width - 1, cursorCol + n);
     }
+    // Insert a string at the current cursor position, with wrapping
+    public void insertText(String text) {
+        for (char c : text.toCharArray()) {
+            writeChar(c);
+        }
+    }
+
+    // Fill the current row with a specific character
+    public void fillLine(char c) {
+        for (int col = 0; col < width; col++) {
+            screen[cursorRow][col].setCharacter(c);
+        }
+    }
+    // Clear both screen and scrollback history
+    public void clearScreenAndScrollback() {
+        clearScreen();
+        clearScrollback();
+    }
+
+    public List<Cell[]> getFullContentLines() {
+        List<Cell[]> all = new LinkedList<>(scrollback);
+        for (Cell[] row : screen) {
+            all.add(row);
+        }
+        return all;
+    }
 }
