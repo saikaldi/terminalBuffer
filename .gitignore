@@ -1,0 +1,43 @@
+# Build directories
+/build/
+/out/
+/target/
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Maven
+.mvn/timing.properties
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Java compiled files
+*.class
+
+# Temporary files
+*.tmp
+*.swp
+
+# Test reports
+/test-results/
+/reports/
+
+# Local environment files
+.env
