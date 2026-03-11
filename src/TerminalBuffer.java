@@ -88,4 +88,28 @@ public class TerminalBuffer {
         cursorRow = height - 1;
         cursorCol = 0;
     }
+    // Clear all cells on the screen
+    public void clearScreen() {
+        for (int r = 0; r < height; r++) {
+            for (int c = 0; c < width; c++) {
+                screen[r][c] = new Cell();
+            }
+        }
+        cursorRow = 0;
+        cursorCol = 0;
+    }
+
+    // Clear the scrollback history
+    public void clearScrollback() {
+        scrollback.clear();
+    }
+    // get a single cell
+    public Cell getCell(int row, int col) {
+        return screen[row][col];
+    }
+
+    // get scrollback size
+    public int getScrollbackSize() {
+        return scrollback.size();
+    }
 }
