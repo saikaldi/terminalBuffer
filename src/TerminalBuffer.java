@@ -65,4 +65,27 @@ public class TerminalBuffer {
             writeChar(c);
         }
     }
+    // Insert an empty line at the bottom of the screen, scroll content up
+    public void insertEmptyLine() {
+        // Move top line to scrollback
+        scrollback.add(screen[0]);
+        if (scrollback.size() > maxScrollback) {
+            scrollback.remove(0); // remove oldest line
+        }
+
+        // Shift all screen lines up
+        for (int r = 0; r < height - 1; r++) {
+            screen[r] = screen[r + 1];
+        }
+
+        // Create a new empty line at the bottom
+        screen[height - 1] = new Cell[width];
+        for (int c = 0; c < width; c++) {
+            screen[height - 1][c] = new Cell();
+        }
+
+        // Move cursor to start of the new line
+        cursorRow = height - 1;
+        cursorCol = 0;
+    }
 }
