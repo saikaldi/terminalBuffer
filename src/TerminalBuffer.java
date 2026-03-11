@@ -112,4 +112,41 @@ public class TerminalBuffer {
     public int getScrollbackSize() {
         return scrollback.size();
     }
+
+    // Return the content of a specific row as a String
+    public String getLine(int row) {
+        StringBuilder sb = new StringBuilder();
+        for (int c = 0; c < width; c++) {
+            sb.append(screen[row][c].getCharacter());
+        }
+        return sb.toString();
+    }
+
+    // Return the entire screen as a single String (multiple lines)
+    public String getScreenContent() {
+        StringBuilder sb = new StringBuilder();
+        for (int r = 0; r < height; r++) {
+            sb.append(getLine(r));
+            if (r != height - 1) sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    // Return scrollback + current screen as a single String
+    public String getFullContent() {
+        StringBuilder sb = new StringBuilder();
+
+        // scrollback lines
+        for (Cell[] line : scrollback) {
+            for (Cell c : line) {
+                sb.append(c.getCharacter());
+            }
+            sb.append("\n");
+        }
+
+        // current screen lines
+        sb.append(getScreenContent());
+
+        return sb.toString();
+    }
 }
