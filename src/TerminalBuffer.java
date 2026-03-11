@@ -50,4 +50,11 @@ public class TerminalBuffer {
             }
         }
     }
+
+    // Write a full string starting at the current cursor, moving cursor automatically
+    public void writeText(String text) {
+        for (char c : text.toCharArray()) {
+            writeChar(c);
+        }
+    }
 }
