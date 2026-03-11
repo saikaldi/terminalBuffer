@@ -1,7 +1,15 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
+        TerminalBuffer buffer = new TerminalBuffer(5, 3);
+        buffer.writeText("Hello");
+        buffer.insertEmptyLine();
+        buffer.writeText("World");
 
+        System.out.println("=== Screen ===");
+        System.out.println(buffer.getScreenContent());
+
+        System.out.println("=== Full Content (scrollback + screen) ===");
+        System.out.println(buffer.getFullContent());
     }
 }
